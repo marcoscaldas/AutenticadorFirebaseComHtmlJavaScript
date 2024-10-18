@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial</title>
+</head>
+
+<body>
+        <h1>Página Inicial do Seu Sistema Web</h1>
+    <header>
+        <button type="button" onclick="logout()">LogOut</button>
+    </header>
+   
+
+
+
+    <script src="../../auth-guard.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth-compat.js"></script>
+    <script>
+        const firebaseConfig = {
+         
+        };
+        firebase.initializeApp(firebaseConfig);
+    </script>
+<script>
+    function logout(){
+        firebase.auth().signOut().then(()=>{
+            window.location.href="../../index.html";
+        }).catch(()=>{
+            alert("Erro ao fazer logout!");
+        })
+    }
+
+
+
+    firebase.auth().onAuthStateChanged(user=>{
+    if(!user){
+        window.location.href="../../index.html";
+    }
+})
+
+
+</script>
+</body>
+</html>
